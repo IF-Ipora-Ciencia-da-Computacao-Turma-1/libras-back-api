@@ -40,9 +40,10 @@
     <br>
     <div>
       <button @click="cad">Cadastrar</button>
+      <button @click="view">Visualizar</button>
+
     </div>
     <div>
-      <button @click="view">Visualizar</button>
       <div class="cards">
         <!-- <h1 v-for="iten in data" :key="iten.id">{{ iten }}</h1> -->
         <div class="card" v-for="iten in data" :key="iten.id">
@@ -171,7 +172,7 @@ button {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: #4caf50;
+  background: #000;
   border: 0;
   padding: 15px;
   color: #ffffff;
@@ -179,6 +180,7 @@ button {
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
+  margin: 5px;
 }
 p {
   margin-top: 40px;
@@ -188,11 +190,20 @@ p a {
   text-decoration: underline;
   cursor: pointer;
 }
-
+.cards{
+   display: flex;
+   flex-direction: column;
+  align-items: center;
+}
 .card{
   display: flex;
-  align-items: start;
+  align-items: center;
   justify-content: space-between;
+  max-width: 60%;
+  margin: 10px;
+    border: 2px solid ;
+    border-radius: 10px;
+
 }
 .urlimg{
   max-width: 100px;
@@ -201,5 +212,8 @@ p a {
 .svgtrash{
   width: 50px;
   height: 50px;
+}
+.cadastrar{
+  background: #fff;
 }
 </style>
