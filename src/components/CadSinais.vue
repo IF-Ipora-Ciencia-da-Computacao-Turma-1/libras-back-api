@@ -41,22 +41,30 @@
     <div>
       <button @click="cad">Cadastrar</button>
     </div>
+    <div>
+      <button @click="view">Visualizar</button>
+      <div class="cards">
+        <!-- <h1 v-for="iten in data" :key="iten.id">{{ iten }}</h1> -->
+        <div class="card" v-for="iten in data" :key="iten.id">
+          <h1>{{ iten.nome }}</h1>
+          <img :src="iten.sinal" alt="imagem" class="urlimg"/>
+          <svg @click="delet(iten.id)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash svgtrash" viewBox="0 0 16 16">
+  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+  <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+</svg>
+        </div>
+      </div>
+    </div>
 
   </div>
-  <button @click="uploadImagem">Subir</button>
-    <button @click="list">Listar</button>
-    <button >Apagar</button>
-
-    <br>
-
-    <div class="btn-cad">
-      <button @click="cad">Cadastrar</button>
-    </div>
 </template>
 
 <script>
 import * as firebase from '../firebase.js';
 import * as geoName from '../geonamesAPI.js';
+import * as geolibras from '../geolibrasAPI.js';
+import axios from "axios";
+
 
 export default {
   name: 'TelaLogin',
@@ -68,6 +76,7 @@ export default {
       cidade : null,
       lat : null,
       lon : null,
+      data: [],
     }
   },
   methods:{
@@ -99,11 +108,13 @@ export default {
           this.link = url;
           let dataCidade = geoName.getCidade();
           dataCidade.forEach(element => {
-            console.log(element);
-            this.lat = element.lat;
-            this.lon = element.lng;
+            if (this.cidade == element.name) {
+              this.lat = element.lat;
+              this.lon = element.lng;
+              console.log(this.lat + '/' + this.lon);
 
-            console.log(this.lat + '/' + this.lon);
+              geolibras.postAPI(this.cidade, this.estado, this.link, this.lat, this.lon);
+            }
           });
         })
       })
@@ -116,8 +127,28 @@ export default {
       this.gif = fileIten;
     }, 
     uploadImagem(){
+
       firebase.uploadImagem(this.gif);
-    },
+    }, view(){
+      let url = 'https://apiif.murillocastro.com.br/public/api/cidade/index';
+      axios.get(url).then((resposta) => {
+          this.data = resposta.data;
+          console.log(this.data);
+        }).catch((erro) => {
+          console.log(erro);
+        });
+    }, delet(idd){
+      let url = 'https://apiif.murillocastro.com.br/public/api/cidade/delete';
+      axios.post(url, {
+        id: idd
+      })
+      .then(function (response) {
+        console.log(response); 
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
   },
   created(){
     firebase.initialize();
@@ -156,5 +187,19 @@ p {
 p a {
   text-decoration: underline;
   cursor: pointer;
+}
+
+.card{
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+}
+.urlimg{
+  max-width: 100px;
+  max-height: 100px;
+}
+.svgtrash{
+  width: 50px;
+  height: 50px;
 }
 </style>
