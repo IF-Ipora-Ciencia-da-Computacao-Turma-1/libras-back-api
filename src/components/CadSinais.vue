@@ -83,22 +83,8 @@ export default {
         //console.log(element.adminCodes1.ISO3166_2);
         if(this.estado == element.adminCodes1.ISO3166_2){
           console.log(element.adminCodes1.ISO3166_2);
-          //console.log(element.countryId);
-          let UF = element.countryId;
-          //let dataCidade = geoName.getCity(UF);
-          //console.log('vue'+dataCidade);
-          let citytask = geoName.getCity(UF);
-          citytask.on("state_changed", (snapshot)=>{
-            console.log(snapshot);
-          }, (error)=>{
-            console.log("Error = ", error);
-          }, ()=>{
-            console.log(citytask.snapshot);
-          // uptask.snapshot.ref.getDownloadURL().then((url)=>{
-          //   console.log("URL : ", url);
-          //   this.link = url;
-          // })
-        })
+          let UF = element.geonameId;
+          geoName.getCity(UF);
         }
       });
 
@@ -111,6 +97,14 @@ export default {
         uptask.snapshot.ref.getDownloadURL().then((url)=>{
           console.log("URL : ", url);
           this.link = url;
+          let dataCidade = geoName.getCidade();
+          dataCidade.forEach(element => {
+            console.log(element);
+            this.lat = element.lat;
+            this.lon = element.lng;
+
+            console.log(this.lat + '/' + this.lon);
+          });
         })
       })
     },
