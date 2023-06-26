@@ -148,7 +148,7 @@ export default {
             this.link = url;
             let dataCidade = geoName.getCidade();
             dataCidade.forEach((element) => {
-              if (this.cidade == element.name) {
+              if (this.cidade == element.toponyName) {
                 this.lat = element.lat;
                 this.lon = element.lng;
                 console.log(this.lat + "/" + this.lon);
