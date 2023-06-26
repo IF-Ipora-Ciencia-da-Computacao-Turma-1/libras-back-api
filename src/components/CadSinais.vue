@@ -67,7 +67,12 @@
 
       <div>
         <button @click="view">Visualizar</button>
-        <div class="cards">
+        
+      </div>
+      
+    </div>
+
+    <div class="cards">
           <!-- <h1 v-for="iten in data" :key="iten.id">{{ iten }}</h1> -->
           <div class="card" v-for="iten in data" :key="iten.id">
             <h1>{{ iten.nome }}</h1>
@@ -91,8 +96,6 @@
           </div>
 
         </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -215,7 +218,7 @@ export default {
   width: fit-content;
   height: fit-content;
   max-width: 900px;
-  max-height: 600px;
+
 
   border-radius: 20px;
 
@@ -242,6 +245,7 @@ label {
 
 .fileInput {
   margin-top: 20px;
+  max-width: 300px;
 }
 .InputFile {
   width: 100%;
@@ -260,7 +264,7 @@ label {
 }
 
 .CidadeEstado {
-  width: 70%;
+  width: 300px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -306,27 +310,43 @@ p a {
 
 
 .cards{
-   display: flex;
-   flex-direction: column;
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 .card{
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  max-width: 60%;
+
+  width: 100%;
+  
   margin: 10px;
-    border: 2px solid ;
-    border-radius: 10px;
+  border: 2px solid #15B6D6;
+  padding: 10px;
+    
+  border-radius: 10px;
 
 }
+
+.card h1{
+  flex: 1;
+  font-size: 100%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 .urlimg {
-  max-width: 100px;
-  max-height: 100px;
+  max-width: 100%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+
 }
 .svgtrash {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 .cadastrar{
   background: #fff;

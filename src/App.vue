@@ -32,12 +32,16 @@ export default {
   
 
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  max-height: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 5%;
+  margin-bottom: 5%;
 
   background-color: #15B6D6;
- 
+  
+  flex: 1;
 }
 </style>
