@@ -2,6 +2,7 @@
   <div class="login">
     <h1>Cadastro de Sinais</h1>
 
+
     <div class="CidadeEstado">
       <div class="estadoInput">
         <label for="">Estado</label>
@@ -88,6 +89,7 @@
               />
             </svg>
           </div>
+
         </div>
       </div>
     </div>
@@ -279,7 +281,9 @@ button {
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
+
   background: #FFC831;
+
   border: 0;
   padding: 15px;
   color: #ffffff;
@@ -288,6 +292,7 @@ button {
   transition: all 0.3 ease;
   cursor: pointer;
   border-radius: 5px;
+  margin: 5px;
 }
 
 p {
@@ -299,10 +304,21 @@ p a {
   cursor: pointer;
 }
 
-.card {
+
+.cards{
+   display: flex;
+   flex-direction: column;
+  align-items: center;
+}
+.card{
   display: flex;
-  align-items: start;
+  align-items: center;
   justify-content: space-between;
+  max-width: 60%;
+  margin: 10px;
+    border: 2px solid ;
+    border-radius: 10px;
+
 }
 .urlimg {
   max-width: 100px;
@@ -311,5 +327,8 @@ p a {
 .svgtrash {
   width: 50px;
   height: 50px;
+}
+.cadastrar{
+  background: #fff;
 }
 </style>

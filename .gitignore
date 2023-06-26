@@ -1,1 +1,11 @@
-node_modules
+# Arquivos de configuração
+config.js
+.env
+dist.zip
+
+# Diretório de dependências
+node_modules/
+
+# Arquivos compilados ou gerados
+dist/
+build/
